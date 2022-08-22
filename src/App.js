@@ -13,7 +13,7 @@ function App() {
   };
   return (
     <>
-      {showCart && <Cart />}
+      {showCart && <Cart onCartHide={hideCartHandler} />}
       <Header onCartShow={showCartHandler} />
       <main>
         <Meals />
