@@ -3,10 +3,13 @@ import CartContext from "../../store/Cart-Context";
 import CartIcon from "../Cart/CartIcon";
 import styles from "./HeaderCartButton.module.css";
 const HeaderCartButton = (props) => {
-  const cartCTX = useContext(CartContext);
-  const numberOfCartItems = cartCTX.items.reduce((curNumber, item) => {
+  const cartCtx = useContext(CartContext);
+  console.log(cartCtx);
+  const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+    console.log(curNumber, item);
     return curNumber + item.amount;
   }, 0);
+  console.log(numberOfCartItems);
   return (
     <>
       <button className={styles.button} onClick={props.onCartClick}>
