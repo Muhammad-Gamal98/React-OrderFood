@@ -6,8 +6,13 @@ import styles from "./Cart.module.css";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
-  const addHandler = (item) => {};
-  const removeHandler = (id) => {};
+  const addHandler = (item) => {
+    console.log(item);
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
+  const removeHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
   const cartItem = cartCtx.items.map((item) => (
     <CartItem
       key={item.id}
