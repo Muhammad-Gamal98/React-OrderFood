@@ -5,11 +5,14 @@
   animation: meals-appear 1s ease-out forwards;
 }
 
-.mealsLoading{
+.mealsLoading {
   text-align: center;
   color: gold;
 }
-
+.mealsError {
+  text-align: center;
+  color: red;
+}
 
 .meals ul {
   list-style: none;
