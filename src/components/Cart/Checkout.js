@@ -4,7 +4,8 @@ import styles from "./Checkout.module.css";
 import CheckoutForm from "./CheckoutForm";
 
 const isEmpty = (value) => value.trim() === "";
-const isNotFiveChar = (value) => value.trim().length !== 5;
+const isNotFiveChar = (value) =>
+  value.trim().length !== 5 && typeof Number(value) === "number";
 
 const Checkout = (props) => {
   const name = useRef();
@@ -43,9 +44,7 @@ const Checkout = (props) => {
     inputChangeHandler: postalChangeHandler,
     inputBlurHandler: postalBlureHandler,
   } = useCheckout(isNotFiveChar);
-
   let formIsValied = true;
-
   const submitHandler = (event) => {
     event.preventDefault();
     nameIsTouched(true);
