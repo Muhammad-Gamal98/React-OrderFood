@@ -18,6 +18,19 @@ const Cart = (props) => {
   const orderHandler = () => {
     setShowCheckout(true);
   };
+  const confirmOrderHandler = async (userData) => {
+    console.log(userData);
+    await fetch(
+      "https://order-food-e043d-default-rtdb.firebaseio.com/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          user: userData,
+          OrderItems: cartCtx.items,
+        }),
+      }
+    );
+  };
   const cartItem = cartCtx.items.map((item) => (
     <CartItem
       key={item.id}
@@ -35,7 +48,12 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{cartCtx.totalAmout.toFixed(2)}</span>
       </div>
-      {showCheckout && <Checkout onCancel={props.onCartHide} />}
+      {showCheckout && (
+        <Checkout
+          onConfirmOrder={confirmOrderHandler}
+          onCancel={props.onCartHide}
+        />
+      )}
       {!showCheckout && (
         <div className={styles.actions}>
           <button className={styles["button--alt"]} onClick={props.onCartHide}>

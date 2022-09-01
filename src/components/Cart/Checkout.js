@@ -5,7 +5,7 @@ import CheckoutForm from "./CheckoutForm";
 
 const isEmpty = (value) => value.trim() === "";
 const isNotFiveChar = (value) =>
-  value.trim().length !== 5 && typeof Number(value) === "number";
+  value.trim().length !== 5 && Number(value) !== "number";
 
 const Checkout = (props) => {
   const name = useRef();
@@ -61,33 +61,13 @@ const Checkout = (props) => {
       return;
     }
     console.log("success");
-    // const enteredName = name.current.value;
-    // const enteredStreet = street.current.value;
-    // const enteredCity = city.current.value;
-    // const enteredPostalCode = postalCode.current.value;
-    // setValidity({
-    //   nameIsvalied: !isEmpty(enteredName),
-    //   cityIsvalied: !isEmpty(enteredCity),
-    //   streetIsValied: !isEmpty(enteredStreet),
-    //   postalCodeIsValied: isFiveChar(enteredPostalCode),
-    // });
-    // const formIsValied =
-    //   !isEmpty(enteredName) &&
-    //   !isEmpty(enteredCity) &&
-    //   !isEmpty(enteredStreet) &&
-    //   isFiveChar(enteredPostalCode);
-    // if (!formIsValied) {
-    //   console.log("invalied");
-    //   return;
-    // }
-    // console.log(enteredName, enteredStreet, enteredCity, enteredPostalCode);
+    props.onConfirmOrder({
+      name: nameInput,
+      street: streetInput,
+      city: cityInput,
+      postCode: postalInput,
+    });
   };
-  // const inputChangeHandler = (event) => {
-  //   // console.log(validity);
-  //   // setNameIsTouched(true);
-  //   console.log(name.current.value);
-  // };
-  // console.log(validity);
 
   return (
     <form className={styles.form} onSubmit={submitHandler}>
@@ -153,3 +133,24 @@ const Checkout = (props) => {
   );
 };
 export default Checkout;
+
+// const enteredName = name.current.value;
+// const enteredStreet = street.current.value;
+// const enteredCity = city.current.value;
+// const enteredPostalCode = postalCode.current.value;
+// setValidity({
+//   nameIsvalied: !isEmpty(enteredName),
+//   cityIsvalied: !isEmpty(enteredCity),
+//   streetIsValied: !isEmpty(enteredStreet),
+//   postalCodeIsValied: isFiveChar(enteredPostalCode),
+// });
+// const formIsValied =
+//   !isEmpty(enteredName) &&
+//   !isEmpty(enteredCity) &&
+//   !isEmpty(enteredStreet) &&
+//   isFiveChar(enteredPostalCode);
+// if (!formIsValied) {
+//   console.log("invalied");
+//   return;
+// }
+// console.log(enteredName, enteredStreet, enteredCity, enteredPostalCode);
