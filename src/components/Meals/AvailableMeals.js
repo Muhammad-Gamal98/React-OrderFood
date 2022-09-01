@@ -73,9 +73,6 @@ const AvailableMeals = (props) => {
       // setError(err.message);
     });
   }, []);
-  console.log(controlls);
-
-  console.log(controlls.error);
   if (controlls.isLoading) {
     return (
       <section className={styles.mealsLoading}>
