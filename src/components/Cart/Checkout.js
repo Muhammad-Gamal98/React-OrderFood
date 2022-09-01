@@ -1,17 +1,18 @@
-import { useReducer, useRef, useState } from "react";
+import { useRef } from "react";
 import useCheckout from "../../hooks/use-checkout";
 import styles from "./Checkout.module.css";
 import CheckoutForm from "./CheckoutForm";
 
 const isEmpty = (value) => value.trim() === "";
-const isNotFiveChar = (value) =>
-  value.trim().length !== 5 && Number(value) !== "number";
+const isNotFiveChar = (value) => {
+  return value.trim().length !== 5 || isNaN(Number(value));
+};
 
 const Checkout = (props) => {
-  const name = useRef();
-  const street = useRef();
-  const city = useRef();
-  const postalCode = useRef();
+  // const name = useRef();
+  // const street = useRef();
+  // const city = useRef();
+  // const postalCode = useRef();
   const {
     inputValue: nameInput,
     inputInValied: nameInValied,
@@ -86,7 +87,7 @@ const Checkout = (props) => {
           onChange: nameChangeHandler,
           value: nameInput,
         }}
-        ref={name}
+        // ref={name}
       />
       <CheckoutForm
         error={!streetFieldIsValied}
@@ -99,7 +100,7 @@ const Checkout = (props) => {
           onChange: streetChangeHandler,
           value: streetInput,
         }}
-        ref={street}
+        // ref={street}
       />
       <CheckoutForm
         error={!cityFieldIsValied}
@@ -112,7 +113,7 @@ const Checkout = (props) => {
           onChange: cityChangeHandler,
           value: cityInput,
         }}
-        ref={city}
+        // ref={city}
       />
       <CheckoutForm
         error={!postalFieldIsValied}
@@ -125,7 +126,7 @@ const Checkout = (props) => {
           onChange: postalChangeHandler,
           value: postalInput,
         }}
-        ref={postalCode}
+        // ref={postalCode}
       />
       <div className={styles.actions}>
         <button type="button" onClick={props.onCancel}>
