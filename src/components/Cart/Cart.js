@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import Modal from "../UI/Modal";
 import styles from "./Cart.module.css";
 import Checkout from "./Checkout";
+
 const InitialState = {
   showCheckout: false,
   isSubmit: false,
@@ -43,10 +44,6 @@ const Cart = (props) => {
     controlsReducer,
     InitialState
   );
-  // const [showCheckout, setShowCheckout] = useState(false);
-  // const [isSubmit, setIsSubmit] = useState(false);
-  // const [didSubmit, setDidSubmit] = useState(false);
-  // const [isError, setIsError] = useState(false);
   const addHandler = (item) => {
     console.log(item);
     cartCtx.addItem({ ...item, amount: 1 });
@@ -75,16 +72,11 @@ const Cart = (props) => {
 
       throw new Error("Some Thing Went Wrong!");
     }
-    console.log("out throw");
     dispatchControls({ type: "IS_ERROR", payload: false });
     dispatchControls({ type: "IS_SUBMIT", payload: false });
     dispatchControls({ type: "DID_SUBMIT", payload: true });
     cartCtx.clearItems();
   };
-  console.log("isError", controlStates.isError);
-  console.log("didSubmit", controlStates.didSubmit);
-  console.log("isSubmit", controlStates.isSubmit);
-
   const cartItem = cartCtx.items.map((item) => (
     <CartItem
       key={item.id}
@@ -115,7 +107,6 @@ const Cart = (props) => {
       <p>Some Thing Went Wrong!</p>
     </>
   );
-
   return (
     <Modal onModalClick={props.onCartHide}>
       {!controlStates.isSubmit && !controlStates.didSubmit && (
