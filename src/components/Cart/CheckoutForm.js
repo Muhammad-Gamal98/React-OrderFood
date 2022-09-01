@@ -7,7 +7,9 @@ const CheckoutForm = React.forwardRef((props, ref) => {
       <div className={`${styles.control} ${props.error ? styles.invalid : ""}`}>
         <label htmlFor={props.input.id}>{props.label}</label>
         <input {...props.input} ref={ref} />
-        {props.error && <p>{props.errorMessage}</p>}
+        {props.error && (
+          <label htmlFor={props.input.id}>{props.errorMessage}</label>
+        )}
       </div>
     </>
   );
