@@ -45,28 +45,32 @@ const Checkout = (props) => {
     inputBlurHandler: postalBlureHandler,
   } = useCheckout(isNotFiveChar);
   let formIsValied = true;
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     nameIsTouched(true);
     streetIsTouched(true);
     cityIsTouched(true);
     postalIsTouched(true);
     if (nameInValied || streetInValied || cityInValied || postalInValied) {
-      console.log("in if");
       formIsValied = false;
     }
-    console.log(formIsValied);
     if (!formIsValied) {
       console.log("invalied");
       return;
     }
-    console.log("success");
-    props.onConfirmOrder({
-      name: nameInput,
-      street: streetInput,
-      city: cityInput,
-      postCode: postalInput,
-    });
+    try {
+      await props.onConfirmOrder({
+        name: nameInput,
+        street: streetInput,
+        city: cityInput,
+        postCode: postalInput,
+      });
+      console.log("success");
+    } catch (error) {
+      // console.log("some Thing went wrong!");
+      console.log(error.message);
+      return;
+    }
   };
 
   return (

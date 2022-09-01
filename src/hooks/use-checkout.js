@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const useCheckout = (validityCheck) => {
   const [inputValue, setInputValue] = useState("");
-  console.log("value", inputValue);
   const [inputIsTouched, setInputIsTouched] = useState(false);
   const inputInValied = validityCheck(inputValue);
   const FieldIsValied = !inputInValied || !inputIsTouched;
