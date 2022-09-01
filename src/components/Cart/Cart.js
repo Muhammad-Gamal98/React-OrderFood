@@ -79,6 +79,7 @@ const Cart = (props) => {
     dispatchControls({ type: "IS_ERROR", payload: false });
     dispatchControls({ type: "IS_SUBMIT", payload: false });
     dispatchControls({ type: "DID_SUBMIT", payload: true });
+    cartCtx.clearItems();
   };
   console.log("isError", controlStates.isError);
   console.log("didSubmit", controlStates.didSubmit);
